@@ -1,0 +1,68 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17-Oct-2015, 12:35:00 AM
+    Author     : Crusty
+*/
+
+
+
+@import "compass/css3";
+.button{font-family:'Raleway',Helvetica,Arial,sans-serif;}
+.button-group li{padding-top:3%;}
+.button-group a{color:rgba(0,0,0,1);background-color:transparent;}
+.button-group a:hover{color:rgba(0,0,0,0.4);background-color:transparent;}
+.button-group{float:none;}
+@media only screen and (min-width: 40.063em) 
+{.button-group{float:right;}}.namelogo{padding:20px 10px 0px 10px;}
+@media only screen and (min-width: 40.063em) 
+{.namelogo{padding-bottom:20px;}}
+.namelogo h1{font-size:1.5em;font-weight:600;text-align:center;}
+@media only screen and (min-width: 40.063em) 
+{.namelogo h1{font-size:16px;text-align:left;}}
+@media only screen and (min-width: 64.063em) {.namelogo h1{font-size:35px;text-align:left;}}
+
+.hero{background:url(../img/trees.jpg);background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.15);height:80%; }
+
+.intro-text{padding-top:40%;color:rgba(255,255,255,1);text-align:left;} 
+
+@media only screen and (min-width: 40.063em) {.intro-text{padding-top:25%;}}
+
+@media only screen and (min-width: 64.063em) {.intro-text{padding-top:18%;}}
+
+.intro-text p{font-family:'Shadows Into Light',cursive;font-size:44px;}
+
+
+footer{padding:80px 0 10px 0;}
+footer a:hover{color:rgba(0,0,0,0.4);background-color:transparent;}
+
+
+
+body {
+  background: #F0F0F3;
+}
+.login-box {
+  background: #fff;
+  border: 1px solid #ddd; 
+  margin: 1% 0;
+  color: rgb(255,0,0);
+  padding: 40px 20px 0 20px;
+}
+.tempcolor {
+    color: rgb(255,243,0);
+}
+
+.tempbutton {
+    width: 45%;
+}
+
+
+
+.tempsize{
+    margin-top: 30px;
+    margin-right: 30px;
+    
+}
