@@ -5,8 +5,9 @@
 
     <div class="large-5 columns cloud-type" >  
 
-        <img src="img/dropbox-icon.png" alt="Dropbox"/>   
-        <a href="#" class="button">ADD</a>   
+        <img src="img/dropbox-icon.png" alt="Dropbox"/>
+        
+        <a href="dropbox/login" class="button">ADD</a>   
 
     </div>   
     <div class="large-5 columns cloud-type" >  
