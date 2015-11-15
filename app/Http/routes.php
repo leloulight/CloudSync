@@ -22,6 +22,18 @@ Route::get('home',  function () {
     
 });
 
+Route::get('faq',  function () {
+    
+    return view('pages.faq');
+    
+});
+
+Route::get('computername',  function () {
+    
+    return view('pages.computername');
+    
+});
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
