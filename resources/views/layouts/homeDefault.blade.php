@@ -7,7 +7,7 @@
 <div class="container">
 
     <header>
-        @include('includes.header')
+        @include('includes.home.header')
     </header>
 
     <div id="main" class="large-12 columns">
@@ -17,7 +17,7 @@
     </div>
 
     <footer class="row">
-        @include('includes.footer')
+        @include('includes.home.footer')
     </footer>
 
 </div>

@@ -12,14 +12,18 @@
 */
 
 Route::get('/', function () {
+    return view('pages.index');
+});
+
+Route::get('/home', function () {
     return view('pages.home');
 });
 
 
-Route::get('home',  function () {
-    
-    return view('welcome');
-    
+
+
+Route::get('/dropbox', function () {
+    return view('pages.dropbox');
 });
 
 Route::get('faq',  function () {
@@ -51,3 +55,4 @@ Route::controllers([
 
 Route::get('dropbox/login',"DropboxController@dropboxAuth");
 Route::get('FacebookModel.php',"DropboxController@dropboxSuccess");
+Route::get('/googleDrive',"GoogleDriveController@googleDriveAuth");
