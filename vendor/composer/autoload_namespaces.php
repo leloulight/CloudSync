@@ -7,11 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
-    'Psy\\' => array($vendorDir . '/psy/psysh/src'),
+    'Vinelab\\Editor\\' => array($vendorDir . '/vinelab/laravel-editor/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'PhpSpec' => array($vendorDir . '/phpspec/phpspec/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'Michelf' => array($vendorDir . '/michelf/php-markdown'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'Dropbox' => array($vendorDir . '/dropbox/dropbox-sdk/lib'),

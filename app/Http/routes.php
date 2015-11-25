@@ -11,8 +11,13 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('pages.home');
+});
+
+Route::get('/edit', function () {
+    return view('pages.edittext');
 });
 
 
