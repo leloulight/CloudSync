@@ -138,9 +138,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-        Vinelab\Editor\EditorServiceProvider::class,
         
-
         /*
          * Application Service Providers...
          */

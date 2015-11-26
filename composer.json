@@ -11,6 +11,7 @@
         "illuminate/html": "5.*",
         "dropbox/dropbox-sdk": "1.1.*",
         "vinelab/laravel-editor": "*"
+        "google/apiclient": "1.*"
     },
     
    

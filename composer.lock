@@ -6,6 +6,8 @@
     ],
     "hash": "6920f690a25bdedee1922e9fe75c9cc7",
     "content-hash": "f677f4a2109214e3eab5eeb88bda904f",
+    "hash": "68239f3e5ec65d2d65fd9d6d3aff0cc7",
+    "content-hash": "6f0aa777bdf5afe33e8102f99891bf5f",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -255,6 +257,49 @@
                 "dropbox"
             ],
             "time": "2015-06-29 21:47:57"
+        },
+        {
+            "name": "google/apiclient",
+            "version": "1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/google/google-api-php-client.git",
+                "reference": "a25dc9d5c109ebb02945ba1ff6336cc937c27628"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/a25dc9d5c109ebb02945ba1ff6336cc937c27628",
+                "reference": "a25dc9d5c109ebb02945ba1ff6336cc937c27628",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Client library for Google APIs",
+            "homepage": "http://developers.google.com/api-client-library/php",
+            "keywords": [
+                "google"
+            ],
+            "time": "2015-10-16 22:11:08"
         },
         {
             "name": "illuminate/html",
