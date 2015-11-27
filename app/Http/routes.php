@@ -56,3 +56,6 @@ Route::controllers([
 Route::get('dropbox/login',"DropboxController@dropboxAuth");
 Route::get('FacebookModel.php',"DropboxController@dropboxSuccess");
 Route::get('/googleDrive',"GoogleDriveController@googleDriveAuth");
+Route::get('GoogleDriveModel.php','GoogleDriveController@googleDriveSuccess');
+
+Route::post('googledrive/send','GoogleDriveController@sendToDropbox');
