@@ -61,3 +61,6 @@ Route::get('/googleDrive',"GoogleDriveController@googleDriveAuth");
 Route::get('GoogleDriveModel.php','GoogleDriveController@googleDriveSuccess');
 
 Route::post('googledrive/send','GoogleDriveController@sendToDropbox');
+
+Route::edit('edit','EditController@downloadFile');
+Route::post('save','EditController@uploadFile');
