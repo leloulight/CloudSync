@@ -1,24 +1,29 @@
-@extends('layouts.default')
+@extends('layouts.homeDefault')
 @section('content')
 <?php
 use Illuminate\Support\Facades\Facade;
 
-$path = app_path();
-echo $path;
-var_dump(app_path());
-if ($_POST) {
-  file_put_contents("tempFile.txt",$_POST['text']);
-  header ("Location: ".$_SERVER['PHP_SELF']);
-  exit;
-}
-$text = htmlspecialchars(file_get_contents("tempFile.txt"));
-Editor::view();
-Editor::view($text);
+
+//if ($_POST) {
+//  file_put_contents($path."\\temp\\tempEdit.txt",$_POST['text']);
+//  //header ("Location: ".$_SERVER['PHP_SELF']);
+//  //echo $path;
+//  
+//}
+//$path = storage_path();
+//$text = htmlspecialchars(file_get_contents($path."\\temp\\tempEdit.txt"));
+//
+////Editor::view();
 ?>
-)
-<form method="POST">
-<textarea name="text"><?=$text?></textarea>
-<input type="submit">
+
+<form method="POST" action="save">
+    
+<textarea  id="text" name="text" cols="100" rows="15" style="width: 700px; height: 500px"><?php echo $fileData ;?></textarea>
+
+<input type="submit" value = "Save File">
+
+
+
 </form>
 
 @stop

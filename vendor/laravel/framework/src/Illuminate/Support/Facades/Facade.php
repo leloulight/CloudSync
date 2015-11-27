@@ -34,6 +34,8 @@ abstract class Facade
 
         static::$app->instance(static::getFacadeAccessor(), $instance);
     }
+    
+    
 
     /**
      * Initiate a mock expectation on the facade.

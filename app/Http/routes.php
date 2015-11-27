@@ -20,12 +20,9 @@ Route::get('/home', function () {
     return view('pages.home');
 });
 
-Route::get('/edit', function () {
-    return view('pages.edittext');
-});
+Route::post('/save', 'EditController@closeEditor');
 
-
-
+Route::get('/edit', 'EditController@openEditor');
 
 Route::get('/dropbox', function () {
     return view('pages.dropbox');
