@@ -146,6 +146,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Vinelab\Editor\EditorServiceProvider::class,
 
     ],
 
@@ -197,6 +198,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Html' => Illuminate\Html\HtmlFacade::class,
         'Form' => Illuminate\Html\FormFacade::class,
+        'Editor' => Illuminate\Support\Facades\Facade::class,
+        
         
     ],
 

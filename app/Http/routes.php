@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('pages.index');
 });
@@ -19,8 +20,9 @@ Route::get('/home', function () {
     return view('pages.home');
 });
 
+Route::post('/save', 'EditController@closeEditor');
 
-
+Route::get('/edit', 'EditController@openEditor');
 
 Route::get('/dropbox', function () {
     return view('pages.dropbox');

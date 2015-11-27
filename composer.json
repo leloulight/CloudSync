@@ -10,8 +10,11 @@
         "laravelcollective/html": "^5.1",
         "illuminate/html": "5.*",
         "dropbox/dropbox-sdk": "1.1.*",
+        "vinelab/laravel-editor": "*",
         "google/apiclient": "1.*"
     },
+    
+   
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",

@@ -34,6 +34,8 @@ abstract class Facade
 
         static::$app->instance(static::getFacadeAccessor(), $instance);
     }
+    
+    
 
     /**
      * Initiate a mock expectation on the facade.
@@ -63,6 +65,8 @@ abstract class Facade
     protected static function createFreshMockInstance($name)
     {
         static::$resolvedInstance[$name] = $mock = static::createMockByName($name);
+
+        $mock->shouldAllowMockingProtectedMethods();
 
         if (isset(static::$app)) {
             static::$app->instance($name, $mock);
