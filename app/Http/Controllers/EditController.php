@@ -12,7 +12,7 @@ class EditController extends Controller {
 
     public function openEditor(Request $request) {
         
-        $dropboxFilePath = $request->input('hidden-edit-path');
+        $dropboxFilePath = $request->input('hidden-edit-path'); 
         $dropboxObject = Dropbox::where('userId',1)->firstOrFail();          
         $access_token = $dropboxObject->accessToken;
         
