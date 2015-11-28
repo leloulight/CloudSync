@@ -19,5 +19,54 @@ class Dropbox extends Model{
     
     protected $table="dropbox";
     public $timestamps = false;
-    protected $fillable=['D_id','User_id','D_username','D_accesstoken','D_tokentype','D_uid'];
+    protected $fillable=['dropboxId','userId','username','accessToken','uId'];
+    
+     private $title='';
+     private $fileSize='';
+     private $fileType='';
+     private $downloadUrl='';
+     private $directDownloadUrl='';
+     
+    
+     
+     function getTitle() {
+         return $this->title;
+     }
+
+     function getFileSize() {
+         return $this->fileSize;
+     }
+
+     function getFileType() {
+         return $this->fileType;
+     }
+
+     function setTitle($title) {
+         $this->title = $title;
+     }
+
+     function setFileSize($fileSize) {
+         $this->fileSize = $fileSize;
+     }
+
+     function setFileType($fileType) {
+         $this->fileType = $fileType;
+     }
+     function getDownloadUrl() {
+         return $this->downloadUrl;
+     }
+
+     function setDownloadUrl($downloadUrl) {
+         $this->downloadUrl = $downloadUrl;
+     }
+     function getDirectDownloadUrl() {
+         return $this->directDownloadUrl;
+     }
+
+     function setDirectDownloadUrl($directDownloadUrl) {
+         $this->directDownloadUrl = $directDownloadUrl;
+     }
+
+    
+    
 }

@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 
+use \Dropbox as dbx ;
+
 class EditController extends Controller {
 
-    public function openEditor() {
+    public function openEditor(Request $request) {
+        
+        $dropboxFilePath = $request->input('hidden-edit-path');
+        $dropboxObject = Dropbox::where('userId',1)->firstOrFail();          
+        $access_token = $dropboxObject->accessToken;
+        
+        $dbxClient = new dbx\Client($access_token, "PHP-Example/1.0");
+        
+        
         $path = storage_path();
         $text = htmlspecialchars(file_get_contents($path . "\\temp\\tempEdit.txt"));
         return view('pages.edittext')->with('fileData', $text);
