@@ -75,4 +75,18 @@ class DropboxController extends Controller {
         
     }
 
+    public function saveFileToDrive($path) {
+        $f = fopen($path . "\\temp\\tempEdit.txt", "rb");
+        $result = $dbxClient->uploadFile("/working-draft.txt", dbx\WriteMode::add(), $f);
+        fclose($f);
+        print_r($result);
+    }
+
+    public function readFileToDrive($path) {
+        $f = fopen($path . "\\temp\\tempEdit.txt", "w+b");
+        $fileMetadata = $dbxClient->getFile("/working-draft.txt", $f);
+        fclose($f);
+        print_r($fileMetadata);
+    }
+
 }

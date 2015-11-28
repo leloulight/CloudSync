@@ -22,8 +22,10 @@
                echo '<td>'.$data['size'].'</td>';
                echo "<td>";
                if($isMime == 1 && $data['mime_type'] == 'text/plain'){
-               echo "<form method='post' action='dropbox/edit'>";
+               echo "<form method='post' action='edit'>";
                echo "<input type='hidden' name='hidden-edit-path' value='".$data['path']."' >";
+               echo "<input type ='hidden' name = 'hidden-edit-name' value ='".$fileName."' >";
+               //echo "<input type='hidden' name='_token' value='".$csrf_token()."' >"; 
                echo "<input type='submit' value='Edit' name='edit'>";
                echo "</form></td>";
               }
