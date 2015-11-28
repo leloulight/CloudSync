@@ -193,6 +193,15 @@ class GoogleDriveController extends Controller {
 
         return view('pages.googledrive')->with('googleDriveData', $fileList);
     }
+    
+    public function googleDriveFolder(){
+        $googleDriveObject = GoogleDrive::findOrNew(1);
+         
+         $access_token = $googleDriveObject->access_token;
+         
+         
+    }
+    
 
     public function sendToDropbox(Request $request) {
 

@@ -10,6 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+use App\Dropbox;
+use App\GoogleDrive;
 
 
 Route::get('/', function () {
@@ -17,12 +19,33 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('pages.home');
+    
+    $userConfig = array();
+    
+    $dropboxId = Dropbox::where('userId',1)->count();
+    
+    $googleDriveId = GoogleDrive::where('userId',1)->count();
+    
+    if($dropboxId == 1){
+        $userConfig[0] = 1;
+    }
+    else{
+        $userConfig[0] = 0;
+    }
+          
+    if($googleDriveId == 1){
+         $userConfig[1] = 1;
+    }
+    else{
+        $userConfig[1] = 0;
+    }
+    
+    return view('pages.home')->with('userConfig',$userConfig);
 });
 
 Route::post('/save', 'EditController@closeEditor');
 
-Route::get('/edit', 'EditController@openEditor');
+Route::post('dropbox/edit', 'EditController@openEditor');
 
 Route::get('/dropbox', function () {
     return view('pages.dropbox');
@@ -61,5 +84,4 @@ Route::get('/googleDrive',"GoogleDriveController@googleDriveAuth");
 Route::get('GoogleDriveModel.php','GoogleDriveController@googleDriveSuccess');
 
 Route::post('googledrive/send','GoogleDriveController@sendToDropbox');
-
 
