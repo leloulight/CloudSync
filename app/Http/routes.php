@@ -12,6 +12,7 @@
 */
 use App\Dropbox;
 use App\GoogleDrive;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
@@ -22,10 +23,10 @@ Route::get('/home', function () {
     
     $userConfig = array();
     
-    $dropboxId = Dropbox::where('userId',1)->count();
+    $dropboxId = Dropbox::where('userId',Auth::user()->id)->count();
     
     //var_dump($dropboxId);
-    $googleDriveId = GoogleDrive::where('userId',1)->count();
+    $googleDriveId = GoogleDrive::where('userId',Auth::user()->id)->count();
     
     if($dropboxId == 1){
         $userConfig[0] = 1;
@@ -96,5 +97,5 @@ Route::get('dropboxFolder','DropboxController@dropboxFolder');
 
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
-    'uses' => 'AuthController@confirm'
+    'uses' => 'RegistrationController@confirm'
 ]);

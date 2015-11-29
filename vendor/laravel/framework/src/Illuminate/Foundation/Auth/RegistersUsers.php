@@ -52,5 +52,6 @@ trait RegistersUsers
         return redirect($this->redirectPath());
     }
     
+    
   
 }
