@@ -7,8 +7,8 @@
         <h2>Please verify your email address</h2>
 
         <div>
-            Thanks for creating an account with the verification demo app. Please follow the link below to verify your email
-            address {{ URL::to('register/verify/' . $confirmation_code) }}.<br/>
+            Thanks for creating an account at CloudSync. Please follow the link below to verify your email
+            address {{ URL::to('register/verify/' . $conf_code) }}.<br/>
 
             If you have problems, please paste the above URL into your web browser.
 

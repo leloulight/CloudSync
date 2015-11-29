@@ -5,6 +5,7 @@
 <div class="container-fluid">
          
 <div class="row">
+
     <script>
        $(document).foundation();
        </script>

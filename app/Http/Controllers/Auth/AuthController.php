@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Input;
 
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -69,35 +70,15 @@ class AuthController extends Controller
         ]);
        
         
-     /* Mail::send('emails.verify', [] , $confirmation_code, function($message) {
-            $message->to(Input::get('email'), Input::get('username'))
+      Mail::send('emails.verify', ['conf_code' => $confirmation_code], function($message)
+                      {
+            $message->to(Input::get('email'), Input::get('name'))
                 ->subject('Verify your email address');
-        }); */
+        }); 
             
             return $user;
        
     }
     
-    protected function confirm($confirmation_code)
-    {
-        if( ! $confirmation_code)
-        {
-            throw new InvalidConfirmationCodeException;
-        }
-
-        $user = User::whereConfirmationCode($confirmation_code)->first();
-
-        if ( ! $user)
-        {
-            throw new InvalidConfirmationCodeException;
-        }
-
-        $user->confirmed = 1;
-        $user->confirmation_code = null;
-        $user->save();
-
-        Flash::message('You have successfully verified your account.');
-
-        return Redirect::route('auth/login');
-    }
+    
 }
