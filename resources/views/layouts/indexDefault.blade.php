@@ -7,6 +7,8 @@
 <body>
 <div class="container">
 
+
+
     <header>
         @include('includes.index.header')
     </header>

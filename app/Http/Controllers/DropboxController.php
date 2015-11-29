@@ -60,11 +60,11 @@ class DropboxController extends Controller {
             $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
             $folderMetadata = $dropboxClient->getMetadataWithChildren("/");
             
-            echo '<pre>';
+         /*   echo '<pre>';
             echo print_r($folderMetadata);
             echo '</pre>';
             
-            die();
+           die(); */
             return view('pages.dropbox')->with('dropboxData', $folderMetadata);
         } catch (Exception $exception) {
             return Response::make('User Not Found' . $exception->getCode());
