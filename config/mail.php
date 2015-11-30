@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => "talkithumber@gmail.com", 'name' => "CloudSync"],
+    'from' => ['address' => 'talkithumber@gmail.com', 'name' => 'donotreply@Cloudsync'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('MAIL_USERNAME','talkithumber@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('MAIL_PASSWORD','talkit74'),
 
     /*
     |--------------------------------------------------------------------------

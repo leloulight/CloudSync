@@ -12,6 +12,7 @@
 */
 use App\Dropbox;
 use App\GoogleDrive;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
@@ -22,10 +23,10 @@ Route::get('/home', function () {
     
     $userConfig = array();
     
-    $dropboxId = Dropbox::where('userId',1)->count();
+    $dropboxId = Dropbox::where('userId',Auth::user()->id)->count();
     
     //var_dump($dropboxId);
-    $googleDriveId = GoogleDrive::where('userId',1)->count();
+    $googleDriveId = GoogleDrive::where('userId',Auth::user()->id)->count();
     
     if($dropboxId == 1){
         $userConfig[0] = 1;
@@ -90,9 +91,15 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
-Route::controllers([
-   'password' => 'Auth\PasswordController',
-]);
+
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('dropbox/login',"DropboxController@dropboxAuth");
 Route::get('FacebookModel.php',"DropboxController@dropboxSuccess");
@@ -103,3 +110,7 @@ Route::post('googledrive/send','GoogleDriveController@sendToDropbox');
 Route::get('googleDrive/googleDriveFolder','GoogleDriveController@googleDriveFolder');
 Route::get('dropboxFolder','DropboxController@dropboxFolder');
 
+Route::get('register/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'RegistrationController@confirm'
+]);

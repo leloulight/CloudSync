@@ -2,6 +2,7 @@
 
 namespace Illuminate\Contracts\Auth;
 
+
 interface Registrar
 {
     /**

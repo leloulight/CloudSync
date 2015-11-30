@@ -6,6 +6,9 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Input;
+
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
@@ -22,7 +25,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    private $redirectTo = '/';
+   // private $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -57,10 +60,25 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $confirmation_code = str_random(30);
+        
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'confirmation_code' => $confirmation_code,
         ]);
+       
+        
+      Mail::send('emails.verify', ['conf_code' => $confirmation_code], function($message)
+                      {
+            $message->to(Input::get('email'), Input::get('name'))
+                ->subject('Verify your email address');
+        }); 
+            
+            return $user;
+       
     }
+    
+    
 }
