@@ -8,7 +8,7 @@
              <p class="text-left">Yo!<br>We move stuff as in like "Digital" stuff! <br /> Like in Binaries and Bits</p> 
               
          </div>
-         <div class="large-3 columns tempsize" style="background: white">
+<!--         <div class="large-3 columns tempsize" style="background: white">
                <ul class="tabs" data-tab>
                    <li class="tab-title active"><a href="#panel1">Log In</a></li>
                    <li class="tab-title"><a href="#panel2">Sign Up</a></li>
@@ -78,7 +78,7 @@
              </div>
          </div>
         
-         </div>
+         </div>-->
          
          
                            

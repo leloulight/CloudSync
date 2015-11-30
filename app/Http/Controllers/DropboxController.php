@@ -89,9 +89,11 @@ class DropboxController extends Controller {
             $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
             $url = $dropboxClient->createShareableLink($filePath);
             
-            echo $url;
+            //echo $url;
             
-            die();
+            
+            return View("pages.shareLink")->with('publicLink',$url);
+            //die();
     }
     
     public function getDropboxClient(){

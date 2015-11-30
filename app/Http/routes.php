@@ -15,6 +15,7 @@ use App\GoogleDrive;
 use Illuminate\Support\Facades\Auth;
 
 
+
 Route::get('/', function () {
     return view('pages.index');
 });
@@ -23,10 +24,10 @@ Route::get('/home', function () {
     
     $userConfig = array();
     
-    $dropboxId = Dropbox::where('userId',Auth::user()->id)->count();
+    $dropboxId = Dropbox::where('userId',1)->count();
     
     //var_dump($dropboxId);
-    $googleDriveId = GoogleDrive::where('userId',Auth::user()->id)->count();
+    $googleDriveId = GoogleDrive::where('userId',1)->count();
     
     if($dropboxId == 1){
         $userConfig[0] = 1;
@@ -62,10 +63,15 @@ var_dump( Mail:: failures());
 exit;
 });
 
-Route::get('share', function() {
-return view('pages.shareLink');
-    
-});
+//Route::post('share', function() {
+//    
+//$data = Request::all();
+//$publicUrl = $data["hidden-file-path"];
+//var_dump($publicUrl);
+//die();
+//return view('pages.shareLink');
+//    
+//});
 Route::post('ShareView','ShareController@ShareViewMethod');
 
 Route::get('faq',  function () {

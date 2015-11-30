@@ -4,7 +4,7 @@
 
 <div class ="large-8 columns">
     {!! Form::open(array('action' => 'ShareController@ShareViewMethod', 'class' => 'form')) !!}
-
+    {!! Form::hidden('publicUrl',$publicLink) !!} 
     <div class="control-group">
 
         <div class="controls">

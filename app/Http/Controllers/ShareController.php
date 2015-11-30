@@ -12,7 +12,7 @@ use Mail;
 class ShareController extends Controller {
 
     public function ShareViewMethod() {
-        echo "inside";
+        //echo "inside";
 //        $this->validate($request, [
 //            'emaill' => 'required|email'
 //                ]
@@ -44,30 +44,44 @@ class ShareController extends Controller {
         $email3 = $_POST['email3'];
         $email4 = $_POST['email4'];
         $email5 = $_POST['email5'];
+        
+        $publicUrl = $_POST["publicUrl"];
+        
+        //var_dump($publicUrl);
+        
+        //die();
 
         $emailAddresses = array();
         if ($email1!= "") {
-            $emailAddresses[sizeof($emailAddresses)] = $email1;
+            $emailAddresses[0] = $email1;
         }
         if ($email2!= "") {
-            $emailAddresses[sizeof($emailAddresses)] = $email2;
+            $emailAddresses[1] = $email2;
         }
         if ($email3!= "")  {
-            $emailAddresses[sizeof($emailAddresses)] = $email3;
+            $emailAddresses[2] = $email3;
         }
         if ($email4!= "")  {
-            $emailAddresses[sizeof($emailAddresses)] = $email4;
+            $emailAddresses[3] = $email4;
         }
         if ($email5!= "")  {
-            $emailAddresses[sizeof($emailAddresses)] = $email5;
+            $emailAddresses[4] = $email5;
         }
 
-               
-        Mail::send('pages.shareLink', [], function($message) use ($emailAddresses) {
+        $data = array(
+	'public_url'=>$publicUrl,
+	
+);
+        
+          // echo $email1;    
+        Mail::send('pages.email',$data, function($message) use ($emailAddresses) {
             $message->to($emailAddresses)->subject('This is test e-mail');
+            
         });
-        var_dump(Mail:: failures());
-        exit;
+      
+        
+       
+        
     }
 
     public function SendEmail(Request $request) {

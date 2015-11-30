@@ -5,10 +5,10 @@
     <meta charset="utf-8">
 </head>
 <body>
-<h2>Learning Laravel!</h2>
+<h2>Link To share</h2>
 
 <div>
-    Welcome to  website!
+    <h3>  {{ $public_url }} </h3>
 </div>
 
 </body>

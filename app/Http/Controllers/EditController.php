@@ -20,7 +20,7 @@ class EditController extends Controller {
         $dbxClient = $this->getDropboxClient();
 
         $path = storage_path();
-        $localAddress = $path . "\\Dropbox\\".Auth::user()->id."\\temp\\" . $dropboxFileName;
+        $localAddress = $path . "\\Dropbox\User1\\temp\\" . $dropboxFileName;
         $f = fopen($localAddress, "w+b");
         $fileMetadata = $dbxClient->getFile($dropboxFilePath, $f);
         fclose($f);
