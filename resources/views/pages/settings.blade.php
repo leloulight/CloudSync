@@ -1,10 +1,10 @@
-@extends('layouts.default')
+@extends('layouts.homeDefault')
 @section('content')
 <h2>Settings</h2>
 
 
-<div class="panel callout radius">
-<h4>User : {{ $name }} </h4>
+<div class="large-12 columns panel callout radius">
+
 <table>
     <tr>
         <td><h5>Username</h5></td>

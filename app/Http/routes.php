@@ -20,6 +20,17 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
+Route::get('faq',function(){
+
+    return view('pages.faq');
+    
+});
+
+Route::get('settings',function(){
+   
+    return view('pages.settings');
+});
+
 Route::get('/home', function () {
     
     $userConfig = array();

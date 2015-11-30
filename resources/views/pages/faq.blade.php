@@ -1,14 +1,10 @@
 @extends('layouts.homeDefault')
 @section('content')
 
-<div class="row">
-      <div class="large-12 columns">
-        <h1>FAQ</h1>
-      </div>
-    </div>
-    
+
     <div class="row">
       <div class="large-12 columns">
+           <h1>FAQ</h1>
         <div class="panel">
           <h3>1. What is cloudSync?</h3>
           <p> Ans: CloudSync is an web application for file transfer across different </p>

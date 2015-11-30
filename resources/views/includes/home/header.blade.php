@@ -7,10 +7,10 @@
     </div>
     <div id="nav-bar-wrapper" class="large-8 column" >
         <ul class="button-group right">
-            <li><a href="home.php" class="button">Home</a></li>
+            <li><a href="home" class="button">Home</a></li>
 
-            <li><a href="settings.php" class="button">Settings</a></li>
-            <li><a href="#" class="button">FAQ</a></li>
+            <li><a href="settings" class="button">Settings</a></li>
+            <li><a href="faq" class="button">FAQ</a></li>
         </ul>
 
     </div>
