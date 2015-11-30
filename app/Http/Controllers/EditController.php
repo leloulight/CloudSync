@@ -57,42 +57,21 @@ class EditController extends Controller {
         $editContent[1] = $LocalAddress; // full local folder name with location
         $editContent[2] = $LocalName; //full local file name
         $editContent[3] = $DropBoxFile; //full dropbox path with name
-        $LocalName= str_replace(' ', '', $LocalName);
+        $LocalName = str_replace(' ', '', $LocalName);
         $f = fopen($editContent[1], "rb");
         $result = $dbxClient->uploadFile($editContent[3], dbx\WriteMode::force(), $f);
         fclose($f);
-        print_r($result);
 
-        return view('pages.edittext')->with('fileData', $editContent);
+        $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+        $access_token = $dropboxObject->accessToken;
+        $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
+        $folderMetadata = $dropboxClient->getMetadataWithChildren("/");
+        $this->deleteFile($LocalAddress);
+
+        return view('pages.dropbox')->with('dropboxData', $folderMetadata);
     }
 
-    public function deleteFile($user) {
-        File::deleted($path);
+    public function deleteFile($localFile) {
+        File::delete($localFile);
     }
-
-    public function createNewFile() {
-        $path = storage_path();
-        $fileName = $path . "\\temp\\tempEdit1.txt";
-        Storage::disk('local')->put('file.txt', 'Contents');
-        if (!File::exists($fileName)) {
-            File::put($fileName, '');
-        }
-    }
-
-    public function downloadFile() {
-        $path = storage_path();
-        $text = $path . "\\Dropbox\\User1\\temp\\tempEdit.txt";
-        $f = fopen($text, "w+b");
-        $fileMetadata = $dbxClient->getFile("/working-draft.txt", $f);
-        fclose($f);
-        print_r($fileMetadata);
-    }
-
-    public function uploadFile() {
-        $f = fopen("working-draft.txt", "rb");
-        $result = $dbxClient->uploadFile("/working-draft.txt", dbx\WriteMode::add(), $f);
-        fclose($f);
-        print_r($result);
-    }
-
 }

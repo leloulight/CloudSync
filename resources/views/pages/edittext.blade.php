@@ -4,15 +4,6 @@
 use Illuminate\Support\Facades\Facade;
 
 
-//if ($_POST) {
-//  file_put_contents($path."\\temp\\tempEdit.txt",$_POST['text']);
-//  //header ("Location: ".$_SERVER['PHP_SELF']);
-//  //echo $path;
-//  
-//}
-//$path = storage_path();
-//$text = htmlspecialchars(file_get_contents($path."\\temp\\tempEdit.txt"));
-//
 ////Editor::view();
 ?>
 
