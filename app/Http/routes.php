@@ -12,6 +12,7 @@
 */
 use App\Dropbox;
 use App\GoogleDrive;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
@@ -22,10 +23,10 @@ Route::get('/home', function () {
     
     $userConfig = array();
     
-    $dropboxId = Dropbox::where('userId',1)->count();
+    $dropboxId = Dropbox::where('userId',Auth::user()->id)->count();
     
-    
-    $googleDriveId = GoogleDrive::where('userId',1)->count();
+    //var_dump($dropboxId);
+    $googleDriveId = GoogleDrive::where('userId',Auth::user()->id)->count();
     
     if($dropboxId == 1){
         $userConfig[0] = 1;
@@ -51,6 +52,21 @@ Route::post('edit', 'EditController@openEditor');
 Route::get('/dropbox', function () {
     return view('pages.dropbox');
 });
+Route::get('sendemail', function () {
+    $emails = array("prannoy23@gmail.com", "rvyas303@gmail.com");
+Mail::send('pages.email', [], function($message) use ($emails)
+{    
+    $message->to($emails)->subject('This is test e-mail');    
+});
+var_dump( Mail:: failures());
+exit;
+});
+
+Route::get('share', function() {
+return view('pages.shareLink');
+    
+});
+Route::post('ShareView','ShareController@ShareViewMethod');
 
 Route::get('faq',  function () {
     
@@ -75,9 +91,15 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
-Route::controllers([
-   'password' => 'Auth\PasswordController',
-]);
+
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('dropbox/login',"DropboxController@dropboxAuth");
 Route::get('FacebookModel.php',"DropboxController@dropboxSuccess");
@@ -96,3 +118,7 @@ Route::post('googledrive/send','GoogleDriveController@sendToDropbox');
 Route::get('googleDrive/googleDriveFolder','GoogleDriveController@googleDriveFolder');
 Route::get('dropboxFolder','DropboxController@dropboxFolder');
 
+Route::get('register/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'RegistrationController@confirm'
+]);
