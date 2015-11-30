@@ -27,18 +27,23 @@ Route::get('faq',function(){
 });
 
 Route::get('settings',function(){
-   
+   if(Auth::guest()){
+       return view('auth.login');
+   }
     return view('pages.settings');
 });
 
 Route::get('/home', function () {
-    
+  
+    if(Auth::guest()){
+        return view('auth.login');
+    }
     $userConfig = array();
     
-    $dropboxId = Dropbox::where('userId',1)->count();
+    $dropboxId = Dropbox::where('userId',Auth::id())->count();
     
     //var_dump($dropboxId);
-    $googleDriveId = GoogleDrive::where('userId',1)->count();
+    $googleDriveId = GoogleDrive::where('userId',Auth::id())->count();
     
     if($dropboxId == 1){
         $userConfig[0] = 1;

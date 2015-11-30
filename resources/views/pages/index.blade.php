@@ -23,8 +23,7 @@
                                  
                                  <div class="large-12 columns">
                                      
-                                     <input type="text" name="username" placeholder="Username" class="error" required />
-                                    
+                                     <input type="text" name="username" placeholder="Username" class="error" required />                                    
                                      </label>
                                  </div>
                              </div>

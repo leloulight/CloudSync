@@ -43,12 +43,17 @@ trait RegistersUsers
          Session::flash('message',Auth::user()->name . ', Thank you for registering! :) '); 
         Session::flash('alert-class', 'success radius'); 
         
-        $temppath = '/drive/'.Auth::id().'/temp';
-         $sendpath = '/drive/'.Auth::id().'/send';
+        $temppathdrive = '/drive/'.Auth::id().'/temp';
+         $sendpathdrive = '/drive/'.Auth::id().'/send';
        // File::makeDirectory($path, $mode = 0777, true, true);
+         $temppathdrop = '/dropbox/'.Auth::id().'/temp';
+         $sendpathdrp = '/dropbox/'.Auth::id().'/send';
+         
+        Storage::disk('local')->makeDirectory($temppathdrive);
+        Storage::disk('local')->makeDirectory($sendpathdrive);
         
-        Storage::disk('local')->makeDirectory($temppath);
-        Storage::disk('local')->makeDirectory($sendpath);
+        Storage::disk('local')->makeDirectory($temppathdrop);
+        Storage::disk('local')->makeDirectory($temppathdrop);
         return redirect($this->redirectPath());
     }
     

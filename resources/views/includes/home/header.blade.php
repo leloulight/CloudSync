@@ -1,6 +1,6 @@
 <div class="large-12 columns" id="header-wrapper">
     <div class="large-4 column">
-        <img src="{{asset('img/manutd-icon.png')}}" alt="Home" />   
+        <img src="{{asset('img/cloud_logo.png')}}" alt="Home" />   
         <span>
             CloudSync
         </span>
@@ -11,6 +11,7 @@
 
             <li><a href="settings" class="button">Settings</a></li>
             <li><a href="faq" class="button">FAQ</a></li>
+            <li><a href="auth/logout" class="button">Logout</a></li>
         </ul>
 
     </div>
