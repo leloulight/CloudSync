@@ -16,10 +16,29 @@ and open the template in the editor.
     background:#293A49;
 }
 
+#content-wrapper h2{
+    text-align: center;
+    text-transform: capitalize;
+    color:#E85C41;
+}
+
+#content-wrapper table{
+    width:100%;
+}
 #content-wrapper p{
     text-align: center;
 }
 
+.card-layout{
+    width: 18%;
+    text-align: center;
+    display: inline-block;
+    margin:10px;
+    background: #F9F9F9;
+    padding: 10px;
+}
+    
+    
 label{
    color: #f1f1f1;
 }

@@ -59,12 +59,7 @@ class DropboxController extends Controller {
             $access_token = $dropboxObject->accessToken;
             $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
             $folderMetadata = $dropboxClient->getMetadataWithChildren("/");
-            
-            echo '<pre>';
-            echo print_r($folderMetadata);
-            echo '</pre>';
-            
-            die();
+      
             return view('pages.dropbox')->with('dropboxData', $folderMetadata);
         } catch (Exception $exception) {
             return Response::make('User Not Found' . $exception->getCode());
@@ -72,21 +67,53 @@ class DropboxController extends Controller {
     }
     
     public function sendToGoogleDrive(Request $request){
+        $client = $this->getDropboxClient();
+        
+        
+        
+        $isDropboxDownload = $this->downloadDropboxFile($client);
+        
+        if($isDropboxDownload){
+            
+        }
+        
         
     }
-
-    public function saveFileToDrive($path) {
-        $f = fopen($path . "\\temp\\tempEdit.txt", "rb");
-        $result = $dbxClient->uploadFile("/working-draft.txt", dbx\WriteMode::add(), $f);
-        fclose($f);
-        print_r($result);
+    
+    public function createShareLink(Request $request){
+        
+            $filePath = $request->input('hidden-file-path');
+            
+            $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+            $access_token = $dropboxObject->accessToken;
+            $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
+            $url = $dropboxClient->createShareableLink($filePath);
+            
+            echo $url;
+            
+            die();
     }
+    
+    public function getDropboxClient(){
+        $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+        $access_token = $dropboxObject->accessToken;
 
-    public function readFileToDrive($path) {
-        $f = fopen($path . "\\temp\\tempEdit.txt", "w+b");
-        $fileMetadata = $dbxClient->getFile("/working-draft.txt", $f);
-        fclose($f);
-        print_r($fileMetadata);
+        $dbxClient = new dbx\Client($access_token, "PHP-Example/1.0");
+        
+        return $dbxClient;
     }
+    
+    public function downloadDropboxFile($dbxClient){
+        
+        $path = storage_path();
+        $localAddress = $path . "\\Dropbox\\".Auth::user()->id."\\temp\\" . $dropboxFileName;
+        $f = fopen($localAddress, "w+b");
+        $fileMetadata = $dbxClient->getFile($dropboxFilePath, $f);
+        fclose($f);
+        
+        return true;
+    }
+    
 
+   
 }

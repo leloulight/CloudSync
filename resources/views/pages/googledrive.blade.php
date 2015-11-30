@@ -13,7 +13,7 @@
         <td> <a href="<?php echo $data->getDirectDownloadUrl(); ?>" >Direct Download</a>  </td> 
         <td><form method="post" action="googledrive/send">
             <input type="submit" value="Send To Dropbox" name="driveToDropbox" />
-           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">   
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">   
             <input type="hidden" name="filePath" value="<?php echo $data->getDownloadUrl(); ?>" />
             </form></td>
     <?php     } ?>

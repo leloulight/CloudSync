@@ -1,6 +1,6 @@
 <div class="large-12 columns" id="header-wrapper">
     <div class="large-4 column">
-        <img src="{{asset('img/manutd-icon.png')}}" />   
+        <img src="{{asset('img/manutd-icon.png')}}" alt="Home" />   
         <span>
             CloudSync
         </span>

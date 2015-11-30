@@ -35,7 +35,7 @@ class GoogleDriveController extends Controller {
     //put your code here
     public $client = "";
 
-    public function GoogleDriveController() {
+    public function __construct() {
         $this->client = new Google_Client();
     }
 
@@ -44,7 +44,7 @@ class GoogleDriveController extends Controller {
         $this->client->setApplicationName(APPLICATION_NAME);
         $this->client->setScopes(SCOPES);
         $this->client->setAuthConfigFile(CLIENT_SECRET_PATH);
-        $this->client->setAccessType('online');
+      //  $this->client->setAccessType('online');
         $this->client->setClientId('61413088518-nvuqb0gr82a47stea9os5cctnu35ssp6.apps.googleusercontent.com');
         $this->client->setClientSecret('eEY5p3_oq3L1w7rrVWB6Odw8');
         $this->client->setRedirectUri('http://localhost:8080/CloudSync/public/GoogleDriveModel.php');
@@ -54,13 +54,13 @@ class GoogleDriveController extends Controller {
         header('Location: ' . filter_var($this->client->createAuthUrl(), FILTER_SANITIZE_URL));
         exit();
     }
-    
-    public function userAlreadyExists($clientObj){
-     
+
+    public function userAlreadyExists($clientObj) {
+
         $client = $clientObj;
-        
-         $drive_service = new Google_Service_Drive($client);
-      
+
+        $drive_service = new Google_Service_Drive($client);
+
         $result = array();
         $pageToken = NULL;
 
@@ -108,25 +108,22 @@ class GoogleDriveController extends Controller {
         }
 
         return view('pages.googledrive')->with('googleDriveData', $fileList);
-        
-        
     }
 
     public function googleDriveSuccess(Request $request) {
 
-        $userId = GoogleDrive::findOrNew($request->session("UserId"));
-        $client = new Google_Client();
-        if ($userId->exists) {
-            $driveData = DB::table('GoogleDrive')->select('userId', '$request->session("UserId")')->get();
-
-            $access_token = $driveData->access_token;
+       
+        $userId = GoogleDrive::where('userId',1)->first();
+        if($userId)
+        {
+            $access_token = $userId->access_token;
             $client = new Google_Client();
-            $client->setAccessToken($access_token);
-            
-            $this->userAlreadyExists($client);
-            
-        } else {
+            $client->setAccessToken(json_encode($access_token));
 
+            $this->userAlreadyExists($client);
+        } else {
+            $client = new Google_Client();
+            
 
             $client->setApplicationName(APPLICATION_NAME);
             $client->setScopes(SCOPES);
@@ -137,14 +134,29 @@ class GoogleDriveController extends Controller {
 
             $client->authenticate($_GET['code']);
             $access_token = $client->getAccessToken();
-
-            print_r($client);
-
+            
+            
+            $formatedAccessToken = json_decode($access_token);
+            
+            echo '<pre>';
+            //print_r($formatedAccessToken);
+            print_r($client->getRefreshToken());
+             echo '</pre>';
             die();
+            //$client->
+            
+            $googleDriveObject = new GoogleDrive();
+            $googleDriveObject->userId = 1;
+            $googleDriveObject->access_token = $formatedAccessToken->access_token;
+            $googleDriveObject->token_type = $formatedAccessToken->token_type;
+            $googleDriveObject->expires_in = $formatedAccessToken->expires_in;
+            
+            $googleDriveObject->save();
+            
             $client->setAccessToken($access_token);
         }
         $drive_service = new Google_Service_Drive($client);
-      
+
         $result = array();
         $pageToken = NULL;
 
@@ -193,15 +205,12 @@ class GoogleDriveController extends Controller {
 
         return view('pages.googledrive')->with('googleDriveData', $fileList);
     }
-    
-    public function googleDriveFolder(){
+
+    public function googleDriveFolder() {
         $googleDriveObject = GoogleDrive::findOrNew(1);
-         
-         $access_token = $googleDriveObject->access_token;
-         
-         
+
+        $access_token = $googleDriveObject->access_token;
     }
-    
 
     public function sendToDropbox(Request $request) {
 

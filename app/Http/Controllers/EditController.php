@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use File;
 use \Dropbox as dbx;
@@ -15,13 +16,11 @@ class EditController extends Controller {
 
         $dropboxFilePath = $request->input('hidden-edit-path');
         $dropboxFileName = $request->input('hidden-edit-name');
-        $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
-        $access_token = $dropboxObject->accessToken;
-
-        $dbxClient = new dbx\Client($access_token, "PHP-Example/1.0");
+        
+        $dbxClient = $this->getDropboxClient();
 
         $path = storage_path();
-        $localAddress = $path . "\\Dropbox\\User1\\temp\\" . $dropboxFileName;
+        $localAddress = $path . "\\Dropbox\\".Auth::user()->id."\\temp\\" . $dropboxFileName;
         $f = fopen($localAddress, "w+b");
         $fileMetadata = $dbxClient->getFile($dropboxFilePath, $f);
         fclose($f);
@@ -34,15 +33,33 @@ class EditController extends Controller {
         $editContent[3] = $dropboxFilePath;
         return view('pages.edittext')->with('fileData', $editContent);
 
-        //print_r($fileMetadReata);
+        
     }
-
-    public function closeEditor(Request $request) {
-
+    
+    public function getDropboxClient(){
         $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
         $access_token = $dropboxObject->accessToken;
 
         $dbxClient = new dbx\Client($access_token, "PHP-Example/1.0");
+        
+        return $dbxClient;
+    }
+    
+    public function downloadDropboxFile(){
+        
+        $path = storage_path();
+        $localAddress = $path . "\\Dropbox\\".Auth::user()->id."\\temp\\" . $dropboxFileName;
+        $f = fopen($localAddress, "w+b");
+        $fileMetadata = $dbxClient->getFile($dropboxFilePath, $f);
+        fclose($f);
+    }
+    
+    
+   
+
+    public function closeEditor(Request $request) {
+
+         $dbxClient = $this->getDropboxClient();
 
         $LocalAddress = $request->input('LocalAddress');
         $LocalName = $request->input('LocalName');
@@ -78,21 +95,4 @@ class EditController extends Controller {
             File::put($fileName, '');
         }
     }
-
-    public function downloadFile() {
-        $path = storage_path();
-        $text = $path . "\\Dropbox\\User1\\temp\\tempEdit.txt";
-        $f = fopen($text, "w+b");
-        $fileMetadata = $dbxClient->getFile("/working-draft.txt", $f);
-        fclose($f);
-        print_r($fileMetadata);
-    }
-
-    public function uploadFile() {
-        $f = fopen("working-draft.txt", "rb");
-        $result = $dbxClient->uploadFile("/working-draft.txt", dbx\WriteMode::add(), $f);
-        fclose($f);
-        print_r($result);
-    }
-
 }

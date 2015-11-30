@@ -24,7 +24,7 @@ Route::get('/home', function () {
     
     $dropboxId = Dropbox::where('userId',1)->count();
     
-    //var_dump($dropboxId);
+    
     $googleDriveId = GoogleDrive::where('userId',1)->count();
     
     if($dropboxId == 1){
@@ -81,8 +81,16 @@ Route::controllers([
 
 Route::get('dropbox/login',"DropboxController@dropboxAuth");
 Route::get('FacebookModel.php',"DropboxController@dropboxSuccess");
-Route::get('/googleDrive',"GoogleDriveController@googleDriveAuth");
+Route::get('googleDrive/login',"GoogleDriveController@googleDriveAuth");
 Route::get('GoogleDriveModel.php','GoogleDriveController@googleDriveSuccess');
+
+Route::get('googleDrivefolder','GoogleDriveController@googleDriveSuccess');
+
+
+Route::post('share','DropboxController@createShareLink');
+Route::post('sendToGoogleDrive','DropboxController@sendToGoogleDrive');
+
+
 
 Route::post('googledrive/send','GoogleDriveController@sendToDropbox');
 Route::get('googleDrive/googleDriveFolder','GoogleDriveController@googleDriveFolder');
