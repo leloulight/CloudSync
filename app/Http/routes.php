@@ -35,9 +35,9 @@ Route::get('settings',function(){
 
 Route::get('/home', function () {
   
-    if(Auth::guest()){
-        return view('auth.login');
-    }
+//    if(Auth::guest()){
+//        return view('auth.login');
+//    }
     $userConfig = array();
     
     $dropboxId = Dropbox::where('userId',Auth::id())->count();

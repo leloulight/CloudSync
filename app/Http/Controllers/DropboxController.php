@@ -82,6 +82,8 @@ class DropboxController extends Controller {
     
     public function createShareLink(Request $request){
         
+          
+             
             $filePath = $request->input('hidden-file-path');
             
             $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
@@ -89,10 +91,12 @@ class DropboxController extends Controller {
             $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
             $url = $dropboxClient->createShareableLink($filePath);
             
-            //echo $url;
+            $data = array(
+            'public_url'=>$url,
+            'userName'=>$dropboxObject->username,
+            );
             
-            
-            return View("pages.shareLink")->with('publicLink',$url);
+            return View("pages.shareLink")->with('publicLink',$data);
             //die();
     }
     
