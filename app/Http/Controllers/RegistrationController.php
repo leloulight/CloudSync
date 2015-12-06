@@ -13,7 +13,6 @@ namespace App\Http\Controllers;
  */
 use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Support\Facades\Response;
 
 
 class RegistrationController extends Controller {
@@ -35,7 +34,7 @@ class RegistrationController extends Controller {
         $user->confirmation_code = null;
         $user->save();
 
-       
+      
 
         return response()->view('auth.login');
     }

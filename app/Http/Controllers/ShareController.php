@@ -38,19 +38,17 @@ class ShareController extends Controller {
 //            // send back to the page with success message
 //            return View('pages.shareLink');
 //        }
-
+        
+                 
         $email1 = $_POST['email1'];
         $email2 = $_POST['email2'];
         $email3 = $_POST['email3'];
         $email4 = $_POST['email4'];
         $email5 = $_POST['email5'];
         
+        $userName = $_POST["userName"];
         $publicUrl = $_POST["publicUrl"];
-        
-        //var_dump($publicUrl);
-        
-        //die();
-
+     
         $emailAddresses = array();
         if ($email1!= "") {
             $emailAddresses[0] = $email1;
@@ -70,14 +68,18 @@ class ShareController extends Controller {
 
         $data = array(
 	'public_url'=>$publicUrl,
+         'userName'=>$userName
 	
 );
-        
+      
           // echo $email1;    
         Mail::send('pages.email',$data, function($message) use ($emailAddresses) {
-            $message->to($emailAddresses)->subject('This is test e-mail');
+            $message->to($emailAddresses)->subject('CloudSync -LinkShare');
+            
             
         });
+        return redirect('dropboxFolder');
+
       
         
        
