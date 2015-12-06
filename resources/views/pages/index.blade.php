@@ -1,6 +1,6 @@
 @extends('layouts.indexDefault')
 @section('content')
-     <div class="hero" >
+     <div class="hero test" >
          
    
          

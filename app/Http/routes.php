@@ -64,6 +64,7 @@ Route::post('edit', 'EditController@openEditor');
 Route::get('/dropbox', function () {
     return view('pages.dropbox');
 });
+
 Route::get('sendemail', function () {
     $emails = array("prannoy23@gmail.com", "rvyas303@gmail.com");
 Mail::send('pages.email', [], function($message) use ($emails)
@@ -74,15 +75,6 @@ var_dump( Mail:: failures());
 exit;
 });
 
-//Route::post('share', function() {
-//    
-//$data = Request::all();
-//$publicUrl = $data["hidden-file-path"];
-//var_dump($publicUrl);
-//die();
-//return view('pages.shareLink');
-//    
-//});
 Route::post('ShareView','ShareController@ShareViewMethod');
 
 Route::get('faq',  function () {

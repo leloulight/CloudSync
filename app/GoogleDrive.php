@@ -19,7 +19,7 @@ class GoogleDrive extends Model{
     
     protected $table="googledrive";
     public $timestamps = false;
-    protected $fillable=['driveId','userId','access_token','token_type','expires_in'];
+    protected $fillable=['driveId','userId','access_token','token_type','expires_in','refresh_token'];
     
      private $title='';
      private $fileSize='';

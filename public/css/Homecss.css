@@ -39,7 +39,9 @@ and open the template in the editor.
 footer{padding:80px 0 10px 0;}
 footer a:hover{color:rgba(0,0,0,0.4);background-color:transparent;}
 
-
+.test{
+    background:url('../img/trees.jpg');
+}
 
 body {
   background: #F0F0F3;
