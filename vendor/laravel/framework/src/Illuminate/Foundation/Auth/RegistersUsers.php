@@ -40,7 +40,7 @@ trait RegistersUsers
         
         Auth::login($this->create($request->all()));
        
-         Session::flash('message',Auth::user()->name . ', Thank you for registering! :) '); 
+         Session::flash('message',Auth::user()->name . ', Thank you for registering! Please verify your email '); 
         Session::flash('alert-class', 'success radius'); 
         
         $temppathdrive = '/drive/'.Auth::id().'/temp';

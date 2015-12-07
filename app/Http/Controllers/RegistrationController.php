@@ -13,6 +13,8 @@ namespace App\Http\Controllers;
  */
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 
 class RegistrationController extends Controller {
@@ -33,9 +35,15 @@ class RegistrationController extends Controller {
         $user->confirmed = 1;
         $user->confirmation_code = null;
         $user->save();
-
-      
-
+        
+        if(Auth::user()!=null){
+            Session::flash('message',Auth::user()->name . ', Your email has been verified! '); 
+                Session::flash('alert-class', 'success radius'); 
+        }
+        else {
+                 Session::flash('message','Your email has been verified! '); 
+               Session::flash('alert-class', 'success radius'); 
+        }
         return response()->view('auth.login');
     }
 }
