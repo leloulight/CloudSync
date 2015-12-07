@@ -21,6 +21,7 @@ use Google_Client;
 use Google_Service_Drive;
 use Google_Http_Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 
 define('APPLICATION_NAME', 'Drive API PHP Quickstart');
@@ -111,7 +112,7 @@ class GoogleDriveController extends Controller {
     public function googleDriveSuccess(Request $request) {
 
 
-        $userId = GoogleDrive::where('userId', 1)->first();
+        $userId = GoogleDrive::where('userId',Auth::id())->first();
         $client = new Google_Client();
         $client->setApplicationName(APPLICATION_NAME);
         $client->setScopes(SCOPES);
@@ -146,7 +147,7 @@ class GoogleDriveController extends Controller {
             $access_token = $client->getAccessToken();
 
             $googleDriveObject = new GoogleDrive();
-            $googleDriveObject->userId = 1;
+            $googleDriveObject->userId = Auth::id();
             $googleDriveObject->access_token = $access_token;
             $googleDriveObject->refresh_token = $client->getRefreshToken();
 
@@ -207,7 +208,7 @@ class GoogleDriveController extends Controller {
     }
 
     public function googleDriveFolder() {
-        $googleDriveObject = GoogleDrive::findOrNew(1);
+        $googleDriveObject = GoogleDrive::findOrNew(Auth::id());
 
         $access_token = $googleDriveObject->access_token;
     }

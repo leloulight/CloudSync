@@ -12,34 +12,7 @@ use Mail;
 class ShareController extends Controller {
 
     public function ShareViewMethod() {
-        //echo "inside";
-//        $this->validate($request, [
-//            'emaill' => 'required|email'
-//                ]
-//        );
-//        $inputs = $request->all();
-//        return Redirect('pages.ShareLink');
-        //$postData = Input::all();
-// var_dump($postData);
-//
-//        $messages = [
-//            'email1' => 'Enter a valid email address',
-//        ];
-//
-//        $rules = [
-//            'email1' => 'email',
-//        ];
-//        $validator = Validator::make($postData, $rules, $messages);
-//        if ($validator->fails()) {
-//            // send back to the page with the input data and errors
-//            return View('pages.shareLink')->withInput(Input::all());
-//        } else {
-//            // Do your stuff here.
-//            // send back to the page with success message
-//            return View('pages.shareLink');
-//        }
-        
-                 
+
         $email1 = $_POST['email1'];
         $email2 = $_POST['email2'];
         $email3 = $_POST['email3'];

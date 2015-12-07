@@ -18,6 +18,8 @@ use Google_Service_Drive;
 use Google_Service_Drive_DriveFile;
 use App\GoogleDrive;
 use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 
 define('APPLICATION_NAME', 'Drive API PHP Quickstart');
@@ -42,7 +44,7 @@ class DropboxController extends Controller {
 
         // Saving Access Token and usernifno to dropbox table
         $dropboxObject = new Dropbox();
-        $dropboxObject->userId = 1;
+        $dropboxObject->userId = Auth::id();
         $dropboxObject->username = $accountInfo["display_name"];
         $dropboxObject->accessToken = $accessToken;
         $dropboxObject->uId = $accountInfo["uid"];
@@ -66,11 +68,11 @@ class DropboxController extends Controller {
 
     public function dropboxFolder() {
         try {
-            $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+            $dropboxObject = Dropbox::where('userId', Auth::id())->firstOrFail();
             $access_token = $dropboxObject->accessToken;
             $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
             $folderMetadata = $dropboxClient->getMetadataWithChildren("/");
-      
+            
             return view('pages.dropbox')->with('dropboxData', $folderMetadata);
         } catch (Exception $exception) {
             return Response::make('User Not Found' . $exception->getCode());
@@ -103,13 +105,16 @@ class DropboxController extends Controller {
           
         ));
  
+        Session::flash('fileSendSuccess', 'File '.$fileName.' Sent to Your Google Drive Account'); 
+        Session::flash('alert-class', 'success radius'); 
+        return redirect('dropboxFolder');
      //print_r($createdFile);
      //die();
     }
     
     
     public function getGoogleDriveClient(){
-        $userId = GoogleDrive::where('userId', 1)->first();
+        $userId = GoogleDrive::where('userId',Auth::id())->first();
         $client = new Google_Client();
         $client->setApplicationName(APPLICATION_NAME);
         $client->setScopes(SCOPES);
@@ -139,21 +144,12 @@ class DropboxController extends Controller {
             }
             //$this->userAlreadyExists($client);
         } else {
-//            $client = new Google_Client();
-//
-//
-//            $client->setApplicationName(APPLICATION_NAME);
-//            $client->setScopes(SCOPES);
-//            $client->setAuthConfigFile(CLIENT_SECRET_PATH);
-//            $client->setAccessType('offline');
-//            $client->setClientId('61413088518-nvuqb0gr82a47stea9os5cctnu35ssp6.apps.googleusercontent.com');
-//            $client->setClientSecret('eEY5p3_oq3L1w7rrVWB6Odw8');
 
             $client->authenticate($_GET['code']);
             $access_token = $client->getAccessToken();
 
             $googleDriveObject = new GoogleDrive();
-            $googleDriveObject->userId = 1;
+            $googleDriveObject->userId = Auth::id();
             $googleDriveObject->access_token = $access_token;
             $googleDriveObject->refresh_token = $client->getRefreshToken();
 
@@ -173,7 +169,7 @@ class DropboxController extends Controller {
              
             $filePath = $request->input('hidden-file-path');
             
-            $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+            $dropboxObject = Dropbox::where('userId',Auth::id())->firstOrFail();
             $access_token = $dropboxObject->accessToken;
             $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
             $url = $dropboxClient->createShareableLink($filePath);
@@ -188,7 +184,7 @@ class DropboxController extends Controller {
     }
     
     public function getDropboxClient(){
-        $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+        $dropboxObject = Dropbox::where('userId',Auth::id())->firstOrFail();
         $access_token = $dropboxObject->accessToken;
 
         $dbxClient = new dbx\Client($access_token, "PHP-Example/1.0");

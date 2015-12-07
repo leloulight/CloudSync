@@ -30,14 +30,37 @@ Route::get('settings',function(){
    if(Auth::guest()){
        return view('auth.login');
    }
-    return view('pages.settings');
+   $userConfig = array();
+    
+    $dropboxId = Dropbox::where('userId',Auth::id())->count();
+    
+    //var_dump($dropboxId);
+    $googleDriveId = GoogleDrive::where('userId',Auth::id())->count();
+    
+    if($dropboxId == 1){
+        $userConfig[0] = 1;
+    }
+    else{
+        $userConfig[0] = 0;
+    }
+          
+    if($googleDriveId == 1){
+         $userConfig[1] = 1;
+    }
+    else{
+        $userConfig[1] = 0;
+    }
+   
+   
+   
+    return view('pages.settings')->with('userConfig',$userConfig);
 });
 
 Route::get('/home', function () {
   
-//    if(Auth::guest()){
-//        return view('auth.login');
-//    }
+    if(Auth::guest()){
+        return view('auth.login');
+    }
     $userConfig = array();
     
     $dropboxId = Dropbox::where('userId',Auth::id())->count();
@@ -101,7 +124,7 @@ Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::get('register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 

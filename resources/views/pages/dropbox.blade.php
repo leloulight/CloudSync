@@ -3,6 +3,12 @@
 
 <div id="content-wrapper" class="large-12 columns">
 
+    
+@if(Session::has('fileSendSuccess'))
+<p id="file-send-success" class="alert-box {{ Session::get('alert-class', 'success radius') }}">{{ Session::get('fileSendSuccess') }}</p>
+@endif    
+    
+    
 <?php
     echo '<h2>Dropbox</h2><table class="hover"><tr><th></th><th>File Name</th> <th>Size</th><th></th><th></th><th></th></tr>';
     foreach ($dropboxData['contents'] as $data) {
