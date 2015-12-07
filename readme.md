@@ -1,6 +1,6 @@
 #CloudSync - Description
 
-A web application which allows user to manage almost all the available cloud storage services at one place. This means users will be able to move file(s) from one cloud service (for example Dropbox or Microsoft OneDrive) to another without having to download the file(s) on their own machine. The application will also give users the option to share selected file(s) on various social media (i.e. Twitter, Facebook, Google+ and more).
+A web application which allows user to manage almost all the available cloud storage services at one place. This means users will be able to move file(s) from one cloud service (for example Dropbox or Google Drive) to another without having to download the file(s) on their own machine. The application will also give users the option to share selected file(s) on various social media (i.e. Twitter, Facebook, Google+ and more).
 
 
 ## Laravel PHP Framework
