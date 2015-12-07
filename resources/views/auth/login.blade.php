@@ -5,7 +5,9 @@
 <div class="container-fluid">
          
 <div class="row">
-
+@if(Session::has('message'))
+<p class="alert-box {{ Session::get('alert-class', 'success radius') }}">{{ Session::get('message') }}</p>
+@endif
     <script>
        $(document).foundation();
        </script>

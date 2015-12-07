@@ -6,10 +6,10 @@
 
     <div class="large-8 columns" id="footer-nav">
         <ul class="inline-list right">
-            <li><a href="home.php" >Home</a></li>
+            <li><a href="home" >Home</a></li>
 
-            <li><a href="settings.php" >Settings</a></li>
-            <li><a href="#" >FAQ</a></li>
+            <li><a href="settings" >Settings</a></li>
+            <li><a href="faq" >FAQ</a></li>
         </ul>  
 
     </div>

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use File;
-use \Dropbox as dbx;
 use App\Dropbox;
+use \Dropbox as dbx;
+//use Illuminate\Support\Facades\Auth;
 
 class EditController extends Controller {
 
@@ -37,7 +37,7 @@ class EditController extends Controller {
     }
     
     public function getDropboxClient(){
-        $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+        $dropboxObject = Dropbox::where('userId',  Auth::id())->firstOrFail();
         $access_token = $dropboxObject->accessToken;
 
         $dbxClient = new dbx\Client($access_token, "PHP-Example/1.0");
@@ -79,7 +79,7 @@ class EditController extends Controller {
         $result = $dbxClient->uploadFile($editContent[3], dbx\WriteMode::force(), $f);
         fclose($f);
 
-        $dropboxObject = Dropbox::where('userId', 1)->firstOrFail();
+        $dropboxObject = Dropbox::where('userId',Auth::id())->firstOrFail();
         $access_token = $dropboxObject->accessToken;
         $dropboxClient = new dbx\Client($access_token, "PHP-Example/1.0");
         $folderMetadata = $dropboxClient->getMetadataWithChildren("/");
