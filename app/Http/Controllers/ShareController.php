@@ -12,32 +12,6 @@ use Mail;
 class ShareController extends Controller {
 
     public function ShareViewMethod() {
-        //echo "inside";
-//        $this->validate($request, [
-//            'emaill' => 'required|email'
-//                ]
-//        );
-//        $inputs = $request->all();
-//        return Redirect('pages.ShareLink');
-        //$postData = Input::all();
-// var_dump($postData);
-//
-//        $messages = [
-//            'email1' => 'Enter a valid email address',
-//        ];
-//
-//        $rules = [
-//            'email1' => 'email',
-//        ];
-//        $validator = Validator::make($postData, $rules, $messages);
-//        if ($validator->fails()) {
-//            // send back to the page with the input data and errors
-//            return View('pages.shareLink')->withInput(Input::all());
-//        } else {
-//            // Do your stuff here.
-//            // send back to the page with success message
-//            return View('pages.shareLink');
-//        }
 
         $email1 = $_POST['email1'];
         $email2 = $_POST['email2'];
@@ -45,12 +19,9 @@ class ShareController extends Controller {
         $email4 = $_POST['email4'];
         $email5 = $_POST['email5'];
         
+        $userName = $_POST["userName"];
         $publicUrl = $_POST["publicUrl"];
-        
-        //var_dump($publicUrl);
-        
-        //die();
-
+     
         $emailAddresses = array();
         if ($email1!= "") {
             $emailAddresses[0] = $email1;
@@ -70,14 +41,18 @@ class ShareController extends Controller {
 
         $data = array(
 	'public_url'=>$publicUrl,
+         'userName'=>$userName
 	
 );
-        
+      
           // echo $email1;    
         Mail::send('pages.email',$data, function($message) use ($emailAddresses) {
-            $message->to($emailAddresses)->subject('This is test e-mail');
+            $message->to($emailAddresses)->subject('CloudSync -LinkShare');
+            
             
         });
+        return redirect('dropboxFolder');
+
       
         
        

@@ -7,7 +7,7 @@
 <div class="container">
 
 @if(Session::has('message'))
-<p class="alert-box {{ Session::get('alert-class', 'success radius') }}">{{ Session::get('message') }}</p>
+<p id="registration-success" class="alert-box {{ Session::get('alert-class', 'success radius') }}">{{ Session::get('message') }}</p>
 @endif
     <header>
         @include('includes.home.header')

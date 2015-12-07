@@ -30,7 +30,30 @@ Route::get('settings',function(){
    if(Auth::guest()){
        return view('auth.login');
    }
-    return view('pages.settings');
+   $userConfig = array();
+    
+    $dropboxId = Dropbox::where('userId',Auth::id())->count();
+    
+    //var_dump($dropboxId);
+    $googleDriveId = GoogleDrive::where('userId',Auth::id())->count();
+    
+    if($dropboxId == 1){
+        $userConfig[0] = 1;
+    }
+    else{
+        $userConfig[0] = 0;
+    }
+          
+    if($googleDriveId == 1){
+         $userConfig[1] = 1;
+    }
+    else{
+        $userConfig[1] = 0;
+    }
+   
+   
+   
+    return view('pages.settings')->with('userConfig',$userConfig);
 });
 
 Route::get('/home', function () {
@@ -69,6 +92,7 @@ Route::post('edit', 'EditController@openEditor');
 Route::get('/dropbox', function () {
     return view('pages.dropbox');
 });
+
 Route::get('sendemail', function () {
     $emails = array("prannoy23@gmail.com", "rvyas303@gmail.com");
 Mail::send('pages.email', [], function($message) use ($emails)
@@ -79,15 +103,6 @@ var_dump( Mail:: failures());
 exit;
 });
 
-//Route::post('share', function() {
-//    
-//$data = Request::all();
-//$publicUrl = $data["hidden-file-path"];
-//var_dump($publicUrl);
-//die();
-//return view('pages.shareLink');
-//    
-//});
 Route::post('ShareView','ShareController@ShareViewMethod');
 
 Route::get('faq',  function () {
@@ -109,7 +124,7 @@ Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::get('register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 

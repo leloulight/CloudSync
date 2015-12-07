@@ -3,6 +3,12 @@
 
 <div id="content-wrapper" class="large-12 columns">
 
+    
+@if(Session::has('fileSendSuccess'))
+<p id="file-send-success" class="alert-box {{ Session::get('alert-class', 'success radius') }}">{{ Session::get('fileSendSuccess') }}</p>
+@endif    
+    
+    
 <?php
     echo '<h2>Dropbox</h2><table class="hover"><tr><th></th><th>File Name</th> <th>Size</th><th></th><th></th><th></th></tr>';
     foreach ($dropboxData['contents'] as $data) {
@@ -35,16 +41,19 @@
                 echo "</form></td>";
             }
 
+            
             echo "<td><form method='post' action='share'>";
             echo "<input type='hidden' name='hidden-file-path' value='" . $data['path'] . "' >";
             echo "<input type='submit' value='Share' name='share' class='success tiny  button' />";
             echo "</form></td>";
-             
-             echo "<td><form method='post' action='sendToGoogleDrive'>";
+            
+            if ($isMime == 1){
+            echo "<td><form method='post' action='sendToGoogleDrive'>";
             echo "<input type='hidden' name='hidden-file-path' value='" . $data['path'] . "' >";
+            echo "<input type='hidden' name='hidden-mime-type' value='" . $data['mime_type'] . "' >";
             echo "<input type='submit' value='Send to Google Drive' name='send' class='secondary tiny  button' />";
             echo "</form></td>";
-
+            }
 
             echo '</tr>';
         }

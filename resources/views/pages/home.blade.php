@@ -12,7 +12,7 @@
            
             if ($userConfig[0] == 0) {
                 ?>
-                <img src="img/dropbox-icon.png" alt="Dropbox"/>
+                <img src="img/dropbox-128x128.png" alt="Dropbox"/>
 
                 <a href="dropbox/login" id="btn-dropbox" class="button">ADD</a>   
                 <?php
@@ -26,7 +26,7 @@
 
     <?php if ($userConfig[1] == 0) { ?>
 
-                <img src="img/skydrive-icon.png" alt="Skydrive/Onedrive"/> 
+                <img src="img/drive-128x128.png" alt="Skydrive/Onedrive"/> 
 
                 <a href="googleDrive/login" class="button">ADD</a>
     <?php

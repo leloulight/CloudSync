@@ -1,16 +1,18 @@
- <div class="row">
-        <div class="small-12 medium-4 large-6 columns namelogo">
-          <h1>CloudSync</h1>
-        </div>
-        <div class="small-12 medium-8 large-6 columns">
-          <div class="nav-bar">
+ <div class="large-12 columns" id="header-wrapper">
+       <div class="large-4 column">
+        <img src="{{asset('img/cloud-128x128.png')}}" alt="logo" />   
+        <span>
+            CloudSync
+        </span>
+    </div>
+        <div id="nav-bar-wrapper" class="large-8 column" >
+          
             <ul class="button-group">
-            <li><a href="#" class="button">Home</a></li>
-            <li><a href="#" class="button">About Us</a></li>
-            <li><a href="#" class="button">Contact Us</a></li>
+            <li><a href="register" class="button">Register</a></li>
+            <li><a href="auth/login" class="button">Login</a></li>
             
             </ul>
-          </div>
+          
         </div>
          
          

@@ -27,11 +27,11 @@ and open the template in the editor.
 
 .hero{background:url('../img/trees.jpg')!important; background-size:cover;box-shadow:inset 0px 0px 0 2000px rgba(0,0,0,0.15);height:80%; }
 
-.intro-text{padding-top:40%;color:rgba(255,255,255,1);text-align:left;} 
+.intro-text{padding-top:40%;color:rgba(255,255,255,1);text-align:left;color:black;} 
 
-@media only screen and (min-width: 40.063em) {.intro-text{padding-top:25%;}}
+@media only screen and (min-width: 40.063em) {.intro-text{padding-top:5%;}}
 
-@media only screen and (min-width: 64.063em) {.intro-text{padding-top:18%;}}
+@media only screen and (min-width: 64.063em) {.intro-text{padding-top:5%;}}
 
 .intro-text p{font-family:'Shadows Into Light',cursive;font-size:44px;}
 
@@ -39,7 +39,9 @@ and open the template in the editor.
 footer{padding:80px 0 10px 0;}
 footer a:hover{color:rgba(0,0,0,0.4);background-color:transparent;}
 
-
+.test{
+    background:url('../img/trees.jpg');
+}
 
 body {
   background: #F0F0F3;
